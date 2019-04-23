@@ -9,7 +9,9 @@ apiKey: '06c545b592714723831c32325fc96eea'
 const handleApiCall = (req, res) => {
   app.models
     .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
-    .then(data => res.json(data))
+    .then(data => {
+      res.json(data)
+    })
     .catch(err => res.status(400).json('error with image'))
 }
   
