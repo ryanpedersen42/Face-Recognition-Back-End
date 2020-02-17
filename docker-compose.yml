@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.6'
 services:
 
   # PostgreSQL
@@ -8,8 +8,8 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
-      POSTGRES_URL: postgres://admin:password@localhost:5432/smart-brain
-      POSTGRES_DB: smart-brain
+      POSTGRES_URL: postgres://admin:password@localhost:5432/facerecognitionapp
+      POSTGRES_DB: facerecognitionapp
       POSTGRES_HOST: postgres
     ports:
       - "5432:5432"
@@ -23,8 +23,6 @@ services:
 
   # Backend
   smart-brain-api:
-    # env_file:
-    #   - ./.private/api-keys.env "Another way to insert env variables"
     container_name: backend
     build: ./
     volumes:
@@ -34,5 +32,5 @@ services:
     ports:
       - "3000:3000"
     environment:
-      POSTGRES_URI: postgres://admin:password@postgres:5432/smart-brain
+      POSTGRES_URI: postgres://admin:password@postgres:5432/facerecognitionapp
       REDIS_URI: redis://redis:6379

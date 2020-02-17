@@ -10,14 +10,10 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 const auth = require('./controllers/authorization');
 
+console.log(process.env.POSTGRES_URI)
 const db = knex({
   client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : '',
-    password : '',
-    database : 'facerecognitionapp'
-  }
+  connection: process.env.POSTGRES_URI
 });
 
 const app = express();
@@ -38,5 +34,5 @@ app.put('/image', auth.requireAuth, (req, res) => { image.handleImagePut(req, re
 app.post('/imageurl', auth.requireAuth, (req, res) => { image.handleApiCall(req, res) });
 
 app.listen(3000, () => {
-  console.log('app is running')
+  console.log('app is running now')
 })
